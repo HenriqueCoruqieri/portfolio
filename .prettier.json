@@ -1,5 +1,0 @@
-{
-  "plugins": ["prettier-plugin-tailwindcss"],
-  "tabWith": 2,
-  "semi": false
-}
