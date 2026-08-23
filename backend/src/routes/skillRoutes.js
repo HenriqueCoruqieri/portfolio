@@ -13,3 +13,5 @@ router.get("/", getAllSkills)
 router.post("/", createSkill)
 router.patch("/:id", updateSkill)
 router.delete("/:id", deleteSkill)
+
+export default router
