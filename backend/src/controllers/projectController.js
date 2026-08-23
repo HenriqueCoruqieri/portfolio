@@ -49,6 +49,7 @@ export async function updateProject(req, res) {
     res.status(200).json(project)
   } catch (error) {
     console.error(error)
+    res.status(500).json({ message: "Erro ao atualizar projeto" })
   }
 }
 
@@ -60,7 +61,7 @@ export async function deleteProject(req, res) {
       return res.status(404).json({ message: "Projeto não encontrado" })
     }
 
-    res.status(200).json({ message: "Projeto deletado com sucesso." })
+    res.status(200).json({ message: "Projeto deletado com sucesso" })
   } catch (error) {
     console.error(error)
 
