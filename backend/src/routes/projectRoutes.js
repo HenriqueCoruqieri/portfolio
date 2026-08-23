@@ -6,14 +6,14 @@ import {
   getAllProjects,
   getProjectById,
   updateProject,
-} from "../controllers/projectController"
+} from "../controllers/projectController.js"
 
 const router = Router()
 
 router.get("/", getAllProjects)
 router.get("/:id", getProjectById)
-router.create("/", createProject)
-router.put("/:id", updateProject)
+router.post("/", createProject)
+router.patch("/:id", updateProject)
 router.delete("/:id", deleteProject)
 
 export default router

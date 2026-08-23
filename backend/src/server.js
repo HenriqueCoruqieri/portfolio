@@ -3,6 +3,7 @@ import dotenv from "dotenv"
 import express from "express"
 
 import { connectDatabase } from "./config/database.js"
+import projectRoutes from "./routes/projectRoutes.js"
 
 dotenv.config()
 
@@ -16,6 +17,8 @@ app.get("/", (req, res) => {
     message: "Portfolio API is running",
   })
 })
+
+app.use("/api/projects", projectRoutes)
 
 const PORT = process.env.PORT || 3000
 
