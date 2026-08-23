@@ -4,6 +4,7 @@ import express from "express"
 
 import { connectDatabase } from "./config/database.js"
 import experienceRoutes from "./routes/experienceRoutes.js"
+import messageRoutes from "./routes/messageRoutes.js"
 import profileRoutes from "./routes/profileRoutes.js"
 import projectRoutes from "./routes/projectRoutes.js"
 import skillRoutes from "./routes/skillRoutes.js"
@@ -25,6 +26,7 @@ app.use("/api/projects", projectRoutes)
 app.use("/api/skills", skillRoutes)
 app.use("/api/experiences", experienceRoutes)
 app.use("/api/profile", profileRoutes)
+app.use("/api/messages", messageRoutes)
 
 const PORT = process.env.PORT || 3000
 
