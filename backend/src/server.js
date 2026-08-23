@@ -3,6 +3,7 @@ import dotenv from "dotenv"
 import express from "express"
 
 import { connectDatabase } from "./config/database.js"
+import experienceRoutes from "./routes/experienceRoutes.js"
 import projectRoutes from "./routes/projectRoutes.js"
 import skillRoutes from "./routes/skillRoutes.js"
 
@@ -21,6 +22,7 @@ app.get("/", (req, res) => {
 
 app.use("/api/projects", projectRoutes)
 app.use("/api/skills", skillRoutes)
+app.use("/api/experiences", experienceRoutes)
 
 const PORT = process.env.PORT || 3000
 
