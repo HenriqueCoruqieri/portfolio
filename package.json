@@ -12,8 +12,6 @@
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.3.3",
-    "bcryptjs": "^3.0.3",
-    "jsonwebtoken": "^9.0.3",
     "react": "^19.2.8",
     "react-dom": "^19.2.8",
     "tailwindcss": "^4.3.3"

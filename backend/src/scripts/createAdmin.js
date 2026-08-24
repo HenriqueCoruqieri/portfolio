@@ -11,6 +11,7 @@ async function createAdmin() {
 
   if (!email || !password) {
     console.error("Uso: node src/scripts/createAdmin.js <email> <senha>")
+    process.exit(1)
   }
 
   try {
