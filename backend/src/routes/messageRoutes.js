@@ -2,14 +2,15 @@ import { Router } from "express"
 
 import {
   deleteMessage,
-  getMessage,
+  getAllMessages,
   sendMessage,
 } from "../controllers/messageController.js"
+import { verifyToken } from "../middlewares/authMiddleware.js"
 
 const router = Router()
 
-router.get("/", getMessage)
-router.post("/", sendMessage)
-router.delete("/:id", deleteMessage)
+router.get("/", verifyToken, getAllMessages)
+router.post("/", verifyToken, sendMessage)
+router.delete("/:id", verifyToken, deleteMessage)
 
 export default router

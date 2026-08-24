@@ -1,6 +1,6 @@
 import Message from "../models/Message.js"
 
-export async function getMessage(req, res) {
+export async function getAllMessages(req, res) {
   try {
     const messages = await Message.find().sort({ createdAt: -1 })
     res.status(200).json(messages)

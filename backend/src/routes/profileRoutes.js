@@ -6,12 +6,13 @@ import {
   getProfile,
   updateProfile,
 } from "../controllers/profileController.js"
+import { verifyToken } from "../middlewares/authMiddleware.js"
 
 const router = Router()
 
 router.get("/", getProfile)
-router.post("/", createProfile)
-router.patch("/:id", updateProfile)
-router.delete("/:id", deleteProfile)
+router.post("/", verifyToken, createProfile)
+router.patch("/:id", verifyToken, updateProfile)
+router.delete("/:id", verifyToken, deleteProfile)
 
 export default router
