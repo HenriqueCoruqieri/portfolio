@@ -17,8 +17,8 @@ function Hero() {
         </h1>
 
         <p className="text-muted mt-6 max-w-md text-base leading-relaxed">
-          Desenvolvo aplicações web modernas, rápidas e com foco na melhor
-          experiência do usuário.
+          Desenvolvo aplicações web modernas, com alta performance e com foco na
+          melhor experiência do usuário.
         </p>
 
         <div className="mt-8 flex flex-wrap items-center gap-4">

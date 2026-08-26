@@ -8,9 +8,9 @@ const SOCIAL_LINKS = [
 function Footer() {
   return (
     <footer id="contato" className="border-line border-t">
-      <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 px-6 py-8 sm:flex-row">
+      <div className="mx-auto flex flex-col items-center justify-between gap-4 px-6 py-6 sm:flex-row">
         <p className="text-muted text-sm">
-          © 2024 Henrique Coruqieri. Todos os direitos reservados.
+          © 2026 Henrique Coruqieri. Todos os direitos reservados.
         </p>
         <div className="flex items-center gap-3">
           {SOCIAL_LINKS.map(({ label, href, Icon }) => (

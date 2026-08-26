@@ -6,7 +6,7 @@ Implementa novas features no projeto seguindo os padrões MVC do backend e os pa
 
 # Modelo
 
-Opus 5
+claude-sonnet-4.6
 
 ---
 

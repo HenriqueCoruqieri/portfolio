@@ -1,30 +1,36 @@
+import { NavLink } from "react-router-dom"
+
 import { MoonIcon, SunIcon } from "../ui/icons"
 
 const NAV_LINKS = [
-  { label: "Sobre", href: "#sobre" },
-  { label: "Projetos", href: "#projetos" },
-  { label: "Skills", href: "#skills" },
-  { label: "Experiência", href: "#experiencia" },
-  { label: "Contato", href: "#contato" },
+  { label: "Sobre", to: "/sobre" },
+  { label: "Projetos", to: "/projetos" },
+  { label: "Skills", to: "/skills" },
+  { label: "Experiência", to: "/experiencia" },
+  { label: "Contato", to: "/contato" },
 ]
 
 function Navbar({ theme, onToggleTheme }) {
   return (
     <header className="border-line bg-bg/80 sticky top-0 z-50 border-b backdrop-blur">
-      <nav className="mx-auto flex h-16 max-w-6xl items-center justify-between px-6">
-        <a href="#" className="text-fg text-xl font-bold tracking-tight">
+      <nav className="mx-auto flex h-16 items-center justify-between px-6">
+        <NavLink to="/" className="text-fg text-xl font-bold tracking-tight">
           HC<span className="text-accent">.</span>
-        </a>
+        </NavLink>
 
         <ul className="hidden items-center gap-8 md:flex">
           {NAV_LINKS.map((link) => (
-            <li key={link.href}>
-              <a
-                href={link.href}
-                className="text-muted hover:text-fg text-sm transition-colors"
+            <li key={link.to}>
+              <NavLink
+                to={link.to}
+                className={({ isActive }) =>
+                  `text-sm transition-colors ${
+                    isActive ? "text-fg" : "text-muted hover:text-fg"
+                  }`
+                }
               >
                 {link.label}
-              </a>
+              </NavLink>
             </li>
           ))}
         </ul>
