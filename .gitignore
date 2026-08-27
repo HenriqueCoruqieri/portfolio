@@ -26,5 +26,8 @@ dist-ssr
 # Enviroment Variables
 .env
 
+# Uploads de imagens (armazenamento local)
+backend/uploads
+
 # AI agents settings files
 .settings.local.json

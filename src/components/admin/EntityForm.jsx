@@ -4,6 +4,7 @@ import { toFormValues, toPayload } from "../../lib/entityFields"
 import { Button } from "../ui/button"
 import { Input } from "../ui/input"
 import { Textarea } from "../ui/textarea"
+import ImageField from "./ImageField"
 
 function EntityForm({ entity, item, onSubmit, onCancel }) {
   const [values, setValues] = useState(() => toFormValues(entity.fields, item))
@@ -66,6 +67,14 @@ function EntityForm({ entity, item, onSubmit, onCancel }) {
                 placeholder={field.placeholder}
                 required={field.required}
                 onChange={(event) => setValue(field.name, event.target.value)}
+              />
+            ) : field.type === "image" ? (
+              <ImageField
+                id={id}
+                value={values[field.name]}
+                placeholder={field.placeholder}
+                required={field.required}
+                onChange={(url) => setValue(field.name, url)}
               />
             ) : (
               <Input
