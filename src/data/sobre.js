@@ -1,9 +1,4 @@
-import {
-  BriefcaseIcon,
-  FileIcon,
-  HeartIcon,
-  StarIcon,
-} from "../components/ui/icons"
+import { FileIcon, HeartIcon, StarIcon } from "../components/ui/icons"
 
 export const HEADER = {
   title: "Sobre mim",
@@ -19,9 +14,8 @@ export const BIO = [
 ]
 
 export const STATS = [
-  { value: "+3", label: "Anos de experiência", Icon: BriefcaseIcon },
-  { value: "20+", label: "Projetos concluídos", Icon: FileIcon },
-  { value: "15+", label: "Clientes satisfeitos", Icon: HeartIcon },
+  { value: "5", label: "Projetos concluídos", Icon: FileIcon },
+  { value: "100+", label: "Horas de estudo", Icon: HeartIcon },
   { value: "100%", label: "Dedicado à qualidade", Icon: StarIcon },
 ]
 
@@ -31,12 +25,12 @@ export const SERVICES = [
   {
     title: "Desenvolvimento Web",
     description:
-      "Criação de aplicações modernas e responsivas com as melhores tecnologias do mercado.",
+      "Criação de aplicações modernas e responsivas com as tecnologias mais utilizadas no mercado.",
   },
   {
     title: "Aplicações Escaláveis",
     description:
-      "Soluções pensadas para crescer, com código limpo e arquitetura eficiente.",
+      "Soluções pensadas para crescer, com código limpo e arquitetura eficiente, tornando-o aberto a alterações e novas funcionalidades.",
   },
   {
     title: "Performance & UX",

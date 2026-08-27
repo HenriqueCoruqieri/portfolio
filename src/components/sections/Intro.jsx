@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom"
 
-import { ABOUT, HOME_STATS } from "../../data/home"
+import { ABOUT } from "../../data/home"
+import { STATS } from "../../data/sobre"
 import StatCard from "../StatCard"
 
 function About() {
@@ -26,7 +27,7 @@ function About() {
         </div>
 
         <div className="flex flex-col gap-4">
-          {HOME_STATS.map((stat) => (
+          {STATS.map((stat) => (
             <StatCard key={stat.label} {...stat} orientation="horizontal" />
           ))}
         </div>

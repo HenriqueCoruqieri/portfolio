@@ -1,5 +1,5 @@
-import About from "../components/sections/About"
 import Hero from "../components/sections/Hero"
+import Intro from "../components/sections/Intro"
 import Technologies from "../components/sections/Technologies"
 
 function Home() {
@@ -7,7 +7,7 @@ function Home() {
     <>
       <Hero />
       <Technologies />
-      <About />
+      <Intro />
     </>
   )
 }
