@@ -8,12 +8,10 @@ const TOKEN_KEY = "admin_token"
 export function AuthProvider({ children }) {
   const [token, setToken] = useState(() => localStorage.getItem(TOKEN_KEY))
   const [user, setUser] = useState(null)
-  // Só há "carregando" quando existe um token salvo para revalidar no mount.
   const [loading, setLoading] = useState(
     () => localStorage.getItem(TOKEN_KEY) !== null,
   )
 
-  // Revalida um token existente contra a API (GET /me) ao montar/trocar o token.
   useEffect(() => {
     if (!token) return
 
@@ -41,7 +39,6 @@ export function AuthProvider({ children }) {
   const login = useCallback(async (email, password) => {
     const { token: newToken } = await loginRequest(email, password)
     localStorage.setItem(TOKEN_KEY, newToken)
-    // Credenciais já validadas pela API — assume o usuário sem esperar o /me.
     setUser({ email, role: "admin" })
     setLoading(false)
     setToken(newToken)
