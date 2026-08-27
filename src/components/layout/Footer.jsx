@@ -1,8 +1,9 @@
-import { GithubIcon, LinkedinIcon } from "../ui/icons"
+import { GithubIcon, LinkedinIcon, MailIcon } from "../ui/icons"
 
 const SOCIAL_LINKS = [
   { label: "GitHub", href: "https://github.com", Icon: GithubIcon },
   { label: "LinkedIn", href: "https://linkedin.com", Icon: LinkedinIcon },
+  { label: "E-mail", href: "mailto:heoliveirac@gmail.com", Icon: MailIcon },
 ]
 
 function Footer() {

@@ -1,10 +1,7 @@
-import { BriefcaseIcon, CheckCircleIcon, HeartIcon } from "../ui/icons"
+import { Link } from "react-router-dom"
 
-const STATS = [
-  { value: "+3", label: "Anos de experiência", Icon: BriefcaseIcon },
-  { value: "+15", label: "Clientes satisfeitos", Icon: HeartIcon },
-  { value: "+20", label: "Projetos concluídos", Icon: CheckCircleIcon },
-]
+import { ABOUT, HOME_STATS } from "../../data/home"
+import StatCard from "../StatCard"
 
 function About() {
   return (
@@ -15,35 +12,22 @@ function About() {
       <div className="grid items-start gap-12 md:grid-cols-2">
         <div>
           <h2 className="text-fg text-3xl font-bold tracking-tight">
-            Sobre mim
+            {ABOUT.heading}
           </h2>
           <p className="text-muted mt-6 max-w-md leading-relaxed">
-            Sou desenvolvedor Full Stack apaixonado por criar soluções digitais
-            eficientes e escaláveis. Atualmente, foco em desenvolver aplicações
-            com Next.js, React, TypeScript, Node.js e PostgreSQL.
+            {ABOUT.paragraph}
           </p>
-          <a
-            href="#experiencia"
+          <Link
+            to={ABOUT.cta.to}
             className="border-line text-fg hover:bg-surface mt-8 inline-flex rounded-lg border px-6 py-3 text-sm font-medium transition-colors"
           >
-            Saiba mais sobre mim
-          </a>
+            {ABOUT.cta.label}
+          </Link>
         </div>
 
         <div className="flex flex-col gap-4">
-          {STATS.map(({ value, label, Icon }) => (
-            <div
-              key={label}
-              className="border-line bg-surface flex items-center gap-4 rounded-xl border p-5"
-            >
-              <span className="rounded-lg bg-indigo-500/10 p-3 text-indigo-400">
-                <Icon className="size-5" />
-              </span>
-              <div>
-                <p className="text-fg text-xl font-bold">{value}</p>
-                <p className="text-muted text-sm">{label}</p>
-              </div>
-            </div>
+          {HOME_STATS.map((stat) => (
+            <StatCard key={stat.label} {...stat} orientation="horizontal" />
           ))}
         </div>
       </div>

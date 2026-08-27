@@ -1,20 +1,4 @@
-import {
-  NextIcon,
-  NodeIcon,
-  PostgresIcon,
-  ReactIcon,
-  TailwindIcon,
-  TypeScriptIcon,
-} from "../ui/icons"
-
-const TECHNOLOGIES = [
-  { name: "Next.js", Icon: NextIcon },
-  { name: "React", Icon: ReactIcon },
-  { name: "TypeScript", Icon: TypeScriptIcon },
-  { name: "TailwindCSS", Icon: TailwindIcon },
-  { name: "Node.js", Icon: NodeIcon },
-  { name: "PostgreSQL", Icon: PostgresIcon },
-]
+import { TECHNOLOGIES } from "../../data/home"
 
 function Technologies() {
   return (

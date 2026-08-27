@@ -1,3 +1,6 @@
+import { Link } from "react-router-dom"
+
+import { HERO } from "../../data/home"
 import { DownloadIcon } from "../ui/icons"
 
 function Hero() {
@@ -5,34 +8,33 @@ function Hero() {
     <section className="mx-auto grid max-w-6xl items-center gap-12 px-6 pt-12 pb-8 md:grid-cols-2 md:pt-16 md:pb-10">
       <div>
         <p className="text-accent mb-4 text-sm font-semibold tracking-[0.2em] uppercase">
-          Olá, meu nome é
+          {HERO.eyebrow}
         </p>
 
         <h1 className="text-fg text-4xl font-bold tracking-tight sm:text-5xl">
-          Henrique Coruqieri
-          <span className="text-fg block">Desenvolvedor</span>
+          {HERO.name}
+          <span className="text-fg block">{HERO.role}</span>
           <span className="block bg-linear-to-r from-blue-500 to-indigo-400 bg-clip-text text-transparent">
-            Full Stack
+            {HERO.highlight}
           </span>
         </h1>
 
         <p className="text-muted mt-6 max-w-md text-base leading-relaxed">
-          Desenvolvo aplicações web modernas, com alta performance e com foco na
-          melhor experiência do usuário.
+          {HERO.description}
         </p>
 
         <div className="mt-8 flex flex-wrap items-center gap-4">
-          <a
-            href="#projetos"
+          <Link
+            to={HERO.actions.primary.to}
             className="bg-accent text-accent-fg rounded-lg px-6 py-3 text-sm font-medium transition-opacity hover:opacity-90"
           >
-            Ver projetos
-          </a>
+            {HERO.actions.primary.label}
+          </Link>
           <a
-            href="/curriculo.pdf"
+            href={HERO.actions.secondary.href}
             className="border-line text-fg hover:bg-surface inline-flex items-center gap-2 rounded-lg border px-6 py-3 text-sm font-medium transition-colors"
           >
-            Baixar currículo
+            {HERO.actions.secondary.label}
             <DownloadIcon className="size-4" />
           </a>
         </div>
