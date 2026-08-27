@@ -1,3 +1,4 @@
+import { handleControllerError } from "../errors/handleControllerError.js"
 import Skill from "../models/Skill.js"
 
 export async function getAllSkills(req, res) {
@@ -5,20 +6,16 @@ export async function getAllSkills(req, res) {
     const skills = await Skill.find().sort({ order: 1 })
     res.status(200).json(skills)
   } catch (error) {
-    console.error(error)
-
-    res.status(500).json({ message: "Erro ao buscar skills" })
+    handleControllerError(res, error, "Erro ao buscar skills")
   }
 }
 
 export async function createSkill(req, res) {
   try {
     const skill = await Skill.create(req.body)
-    res.status(200).json(skill)
+    res.status(201).json(skill)
   } catch (error) {
-    console.error(error)
-
-    res.status(500).json({ message: "Erro ao criar skill" })
+    handleControllerError(res, error, "Erro ao criar skill")
   }
 }
 
@@ -35,8 +32,7 @@ export async function updateSkill(req, res) {
 
     res.status(200).json(skill)
   } catch (error) {
-    console.error(error)
-    res.status(500).json({ message: "Erro ao atualizar skill" })
+    handleControllerError(res, error, "Erro ao atualizar skill")
   }
 }
 
@@ -50,8 +46,6 @@ export async function deleteSkill(req, res) {
 
     res.status(200).json({ message: "Skill deletada com sucesso" })
   } catch (error) {
-    console.error(error)
-
-    res.status(500).json({ message: "Erro ao deletar skill" })
+    handleControllerError(res, error, "Erro ao deletar skill")
   }
 }

@@ -36,7 +36,8 @@ portfolio/
 │       ├── middlewares/  → funções cross-cutting (ex: auth)
 │       ├── models/       → schemas Mongoose
 │       ├── routes/       → definição de endpoints por recurso
-│       └── scripts/      → utilitários de linha de comando
+│       ├── scripts/      → utilitários de linha de comando
+│       └── errors/       → tratamento centralizado de erros
 │
 └── src/              → SPA React
     ├── components/   → componentes reutilizáveis (ui/, layout/)

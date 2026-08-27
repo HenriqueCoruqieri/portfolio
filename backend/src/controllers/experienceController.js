@@ -1,3 +1,4 @@
+import { handleControllerError } from "../errors/handleControllerError.js"
 import Experience from "../models/Experience.js"
 
 export async function getAllExperiences(req, res) {
@@ -5,9 +6,7 @@ export async function getAllExperiences(req, res) {
     const experiences = await Experience.find().sort({ order: 1 })
     res.status(200).json(experiences)
   } catch (error) {
-    console.error(error)
-
-    res.status(500).json({ message: "Erro ao buscar experiências" })
+    handleControllerError(res, error, "Erro ao buscar experiências")
   }
 }
 
@@ -16,9 +15,7 @@ export async function createExperience(req, res) {
     const experience = await Experience.create(req.body)
     res.status(201).json(experience)
   } catch (error) {
-    console.error(error)
-
-    res.status(500).json({ message: "Erro ao criar nova experiência" })
+    handleControllerError(res, error, "Erro ao criar nova experiência")
   }
 }
 
@@ -36,9 +33,7 @@ export async function updateExperience(req, res) {
 
     res.status(200).json(experience)
   } catch (error) {
-    console.error(error)
-
-    res.status(500).json("Erro ao atualiza experiência")
+    handleControllerError(res, error, "Erro ao atualizar experiência")
   }
 }
 
@@ -52,8 +47,6 @@ export async function deleteExperience(req, res) {
 
     res.status(200).json({ message: "Experiência deletada com sucesso" })
   } catch (error) {
-    console.error(error)
-
-    res.status(500).json({ message: "Erro ao excluir experiência" })
+    handleControllerError(res, error, "Erro ao excluir experiência")
   }
 }

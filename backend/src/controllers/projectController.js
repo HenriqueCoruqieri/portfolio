@@ -1,3 +1,4 @@
+import { handleControllerError } from "../errors/handleControllerError.js"
 import Project from "../models/Project.js"
 
 export async function getAllProjects(req, res) {
@@ -5,8 +6,7 @@ export async function getAllProjects(req, res) {
     const projects = await Project.find().sort({ order: 1 })
     res.status(200).json(projects)
   } catch (error) {
-    console.error(error)
-    res.status(500).json({ message: "Erro ao buscar projetos" })
+    handleControllerError(res, error, "Erro ao buscar projetos")
   }
 }
 
@@ -20,8 +20,7 @@ export async function getProjectById(req, res) {
 
     res.status(200).json(project)
   } catch (error) {
-    console.error(error)
-    res.status(500).json({ message: "Erro ao buscar o projeto" })
+    handleControllerError(res, error, "Erro ao buscar o projeto")
   }
 }
 
@@ -30,8 +29,7 @@ export async function createProject(req, res) {
     const project = await Project.create(req.body)
     res.status(201).json(project)
   } catch (error) {
-    console.error(error)
-    res.status(500).json({ message: "Erro ao adicionar novo projeto" })
+    handleControllerError(res, error, "Erro ao adicionar novo projeto")
   }
 }
 
@@ -48,8 +46,7 @@ export async function updateProject(req, res) {
 
     res.status(200).json(project)
   } catch (error) {
-    console.error(error)
-    res.status(500).json({ message: "Erro ao atualizar projeto" })
+    handleControllerError(res, error, "Erro ao atualizar projeto")
   }
 }
 
@@ -63,8 +60,6 @@ export async function deleteProject(req, res) {
 
     res.status(200).json({ message: "Projeto deletado com sucesso" })
   } catch (error) {
-    console.error(error)
-
-    res.status(500).json({ message: "Erro ao deletar projeto" })
+    handleControllerError(res, error, "Erro ao deletar projeto")
   }
 }
