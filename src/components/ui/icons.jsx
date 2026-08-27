@@ -84,6 +84,39 @@ export function HeartIcon(props) {
   )
 }
 
+export function FileIcon(props) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.8"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      {...props}
+    >
+      <path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z" />
+      <path d="M14 3v5h5M9 13h6M9 17h4" />
+    </svg>
+  )
+}
+
+export function StarIcon(props) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.8"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      {...props}
+    >
+      <path d="M12 3l2.6 5.3 5.8.8-4.2 4.1 1 5.8L12 16.3 6.8 19.1l1-5.8L3.6 9.1l5.8-.8z" />
+    </svg>
+  )
+}
+
 export function CheckCircleIcon(props) {
   return (
     <svg
@@ -97,6 +130,23 @@ export function CheckCircleIcon(props) {
     >
       <path d="M21 11.1V12a9 9 0 1 1-5.3-8.2" />
       <path d="M21 4 12 13l-2.5-2.5" />
+    </svg>
+  )
+}
+
+export function MailIcon(props) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.8"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      {...props}
+    >
+      <rect x="3" y="5" width="18" height="14" rx="2" />
+      <path d="m3 7 9 6 9-6" />
     </svg>
   )
 }
