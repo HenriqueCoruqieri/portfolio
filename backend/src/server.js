@@ -3,7 +3,6 @@ import dotenv from "dotenv"
 import express from "express"
 
 import { connectDatabase } from "./config/database.js"
-import { UPLOADS_DIR } from "./middlewares/upload.js"
 import authRoutes from "./routes/authRoutes.js"
 import experienceRoutes from "./routes/experienceRoutes.js"
 import messageRoutes from "./routes/messageRoutes.js"
@@ -24,8 +23,6 @@ app.get("/", (req, res) => {
     message: "Portfolio API is running",
   })
 })
-
-app.use("/uploads", express.static(UPLOADS_DIR))
 
 app.use("/api/projects", projectRoutes)
 app.use("/api/skills", skillRoutes)

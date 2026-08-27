@@ -1,14 +1,4 @@
-import fs from "node:fs"
-import path from "node:path"
-import { fileURLToPath } from "node:url"
-
 import multer from "multer"
-
-const currentDir = path.dirname(fileURLToPath(import.meta.url))
-
-export const UPLOADS_DIR = path.resolve(currentDir, "../../uploads")
-
-fs.mkdirSync(UPLOADS_DIR, { recursive: true })
 
 const ALLOWED_TYPES = [
   "image/jpeg",
@@ -17,15 +7,6 @@ const ALLOWED_TYPES = [
   "image/gif",
   "image/svg+xml",
 ]
-
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => cb(null, UPLOADS_DIR),
-  filename: (req, file, cb) => {
-    const extension = path.extname(file.originalname).toLowerCase()
-    const uniqueName = `${Date.now()}-${Math.round(Math.random() * 1e9)}${extension}`
-    cb(null, uniqueName)
-  },
-})
 
 function fileFilter(req, file, cb) {
   if (ALLOWED_TYPES.includes(file.mimetype)) {
@@ -37,7 +18,7 @@ function fileFilter(req, file, cb) {
 }
 
 const singleImage = multer({
-  storage,
+  storage: multer.memoryStorage(),
   fileFilter,
   limits: { fileSize: 5 * 1024 * 1024 },
 }).single("image")
