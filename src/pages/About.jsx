@@ -6,7 +6,7 @@ import {
   CardHeader,
   CardTitle,
 } from "../components/ui/card"
-import { BIO, HEADER, SERVICES, SERVICES_HEADING, STATS } from "../data/sobre"
+import { BIO, HEADER, SERVICES, SERVICES_HEADING, STATS } from "../data/about"
 
 function Sobre() {
   return (

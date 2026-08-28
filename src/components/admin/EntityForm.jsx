@@ -3,6 +3,7 @@ import { useState } from "react"
 import { toFormValues, toPayload } from "../../lib/entityFields"
 import { Button } from "../ui/button"
 import { Input } from "../ui/input"
+import { Select } from "../ui/select"
 import { Textarea } from "../ui/textarea"
 import ImageField from "./ImageField"
 
@@ -68,6 +69,20 @@ function EntityForm({ entity, item, onSubmit, onCancel }) {
                 required={field.required}
                 onChange={(event) => setValue(field.name, event.target.value)}
               />
+            ) : field.type === "select" ? (
+              <Select
+                id={id}
+                value={values[field.name]}
+                required={field.required}
+                onChange={(event) => setValue(field.name, event.target.value)}
+              >
+                <option value="">Selecione...</option>
+                {field.options.map((option) => (
+                  <option key={option.value} value={option.value}>
+                    {option.label}
+                  </option>
+                ))}
+              </Select>
             ) : field.type === "image" ? (
               <ImageField
                 id={id}
