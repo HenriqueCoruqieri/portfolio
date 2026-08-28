@@ -1,4 +1,5 @@
 import { useState } from "react"
+import { useNavigate } from "react-router-dom"
 
 import EntityManager from "../components/admin/EntityManager"
 import { Button } from "../components/ui/button"
@@ -6,6 +7,7 @@ import { ADMIN_ENTITIES } from "../data/adminEntities"
 import { useAuth } from "../hooks/useAuth"
 
 function AdminHome() {
+  const navigate = useNavigate()
   const { user, logout } = useAuth()
   const [activeKey, setActiveKey] = useState(ADMIN_ENTITIES[0].key)
 
@@ -24,13 +26,23 @@ function AdminHome() {
               alimenta as páginas públicas do portfólio.
             </p>
           </div>
-          <Button
-            type="button"
-            onClick={logout}
-            className="bg-surface text-fg border-line border"
-          >
-            Sair
-          </Button>
+
+          <div className="flex space-x-4">
+            <Button
+              type="button"
+              onClick={() => navigate("/")}
+              className="bg-surface text-fg border-line border"
+            >
+              Home
+            </Button>
+            <Button
+              type="button"
+              onClick={logout}
+              className="bg-surface text-fg border-line border"
+            >
+              Sair
+            </Button>
+          </div>
         </div>
 
         <div

@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom"
 
+import { STATS } from "../../data/about"
 import { ABOUT } from "../../data/home"
-import { STATS } from "../../data/sobre"
 import StatCard from "../StatCard"
 
 function About() {

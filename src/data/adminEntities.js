@@ -1,3 +1,5 @@
+import { WORK_MODES } from "./experience"
+
 export const ADMIN_ENTITIES = [
   {
     key: "skills",
@@ -26,7 +28,7 @@ export const ADMIN_ENTITIES = [
         help: "Use o mesmo número para todas as skills da mesma categoria.",
       },
       { name: "iconUrl", label: "Ícone", type: "image" },
-      { name: "order", label: "Ordem na categoria", type: "number" },
+      { name: "order", label: "Ordem da skill", type: "number" },
     ],
   },
   {
@@ -104,6 +106,13 @@ export const ADMIN_ENTITIES = [
         help: "Deixe em branco se for o emprego atual.",
       },
       { name: "current", label: "Emprego atual", type: "checkbox" },
+      {
+        name: "workMode",
+        label: "Modelo de trabalho",
+        type: "select",
+        required: true,
+        options: WORK_MODES,
+      },
       { name: "order", label: "Ordem de exibição", type: "number" },
     ],
   },
