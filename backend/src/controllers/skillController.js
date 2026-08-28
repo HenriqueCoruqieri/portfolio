@@ -3,7 +3,7 @@ import Skill from "../models/Skill.js"
 
 export async function getAllSkills(req, res) {
   try {
-    const skills = await Skill.find().sort({ order: 1 })
+    const skills = await Skill.find().sort({ categoryOrder: 1, order: 1 })
     res.status(200).json(skills)
   } catch (error) {
     handleControllerError(res, error, "Erro ao buscar skills")

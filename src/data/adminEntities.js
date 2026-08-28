@@ -19,8 +19,14 @@ export const ADMIN_ENTITIES = [
         required: true,
         placeholder: "Frontend, Backend, Ferramentas...",
       },
+      {
+        name: "categoryOrder",
+        label: "Ordem da categoria",
+        type: "number",
+        help: "Use o mesmo número para todas as skills da mesma categoria.",
+      },
       { name: "iconUrl", label: "Ícone", type: "image" },
-      { name: "order", label: "Ordem de exibição", type: "number" },
+      { name: "order", label: "Ordem na categoria", type: "number" },
     ],
   },
   {
