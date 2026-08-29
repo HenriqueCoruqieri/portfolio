@@ -2,7 +2,7 @@ import { useState } from "react"
 
 import { Badge } from "../components/ui/badge"
 import { Card } from "../components/ui/card"
-import { GithubIcon, VercelIcon } from "../components/ui/icons"
+import { GithubIcon, MonitorIcon } from "../components/ui/icons"
 import {
   ALL_PROJECTS_FILTER,
   OTHER_PROJECTS_FILTER,
@@ -12,6 +12,7 @@ import {
   SPECIFIC_TYPE_APPS,
 } from "../data/projects"
 import { useResource } from "../hooks/useResource"
+import { cn } from "../lib/utils"
 
 function normalizeType(project) {
   return (project.typeApp ?? "").trim().toLowerCase()
@@ -29,6 +30,31 @@ function matchesFilter(project, filter) {
   }
 
   return type === filter
+}
+
+function ProjectLinkButton({ url, label, tooltip, className, children }) {
+  return (
+    <span className="group relative flex">
+      <button
+        type="button"
+        disabled={!url}
+        onClick={() => window.open(url, "_blank", "noopener,noreferrer")}
+        aria-label={label}
+        className={cn(
+          "transition-transform enabled:hover:scale-125 disabled:cursor-not-allowed",
+          className,
+        )}
+      >
+        {children}
+      </button>
+      <span
+        aria-hidden="true"
+        className="bg-bg border-line text-fg pointer-events-none absolute top-1/2 right-full z-10 mr-2 -translate-y-1/2 rounded-md border px-2 py-1 text-xs whitespace-nowrap opacity-0 shadow-sm transition-opacity group-hover:opacity-100"
+      >
+        {tooltip}
+      </span>
+    </span>
+  )
 }
 
 function byOrder(a, b) {
@@ -79,74 +105,85 @@ function Projects() {
 
       {!loading && !error && projects.length > 0 && (
         <div className="mt-8">
-          <Card className="divide-line gap-0 divide-y overflow-hidden py-0">
-            {projects.map((project) => (
-              <div
-                key={project._id}
-                className="hover:bg-line/40 flex items-center gap-5 px-6 py-5 transition-colors"
-              >
-                {project.imageUrl ? (
-                  <img
-                    src={project.imageUrl}
-                    alt=""
-                    loading="lazy"
-                    className="bg-bg h-16 w-24 shrink-0 rounded-lg object-cover"
-                  />
-                ) : (
-                  <div className="bg-bg h-16 w-24 shrink-0 rounded-lg" />
-                )}
+          <Card className="gap-0 overflow-hidden py-0">
+            <div className="divide-line max-h-[calc(5*6.5rem+4px)] divide-y overflow-y-auto">
+              {projects.map((project) => (
+                <div
+                  key={project._id}
+                  className="hover:bg-line/40 flex items-center gap-5 py-5 pr-8 pl-6 transition-colors"
+                >
+                  {project.imageUrl ? (
+                    <img
+                      src={project.imageUrl}
+                      alt=""
+                      loading="lazy"
+                      className="bg-bg h-16 w-24 shrink-0 rounded-lg object-cover"
+                    />
+                  ) : (
+                    <div className="bg-bg h-16 w-24 shrink-0 rounded-lg" />
+                  )}
 
-                <div className="min-w-0 flex-1">
-                  <div className="flex items-center gap-2">
-                    <h2 className="text-fg truncate font-semibold">
-                      {project.title}
-                    </h2>
-                    {project.typeApp && (
-                      <Badge
-                        variant="accent"
-                        className="shrink-0 tracking-wide uppercase"
-                      >
-                        {project.typeApp}
-                      </Badge>
-                    )}
+                  <div className="min-w-0 flex-1">
+                    <div className="flex items-center gap-2">
+                      <h2 className="text-fg truncate font-semibold">
+                        {project.title}
+                      </h2>
+                      {project.typeApp && (
+                        <Badge
+                          variant="accent"
+                          className="shrink-0 tracking-wide uppercase"
+                        >
+                          {project.typeApp}
+                        </Badge>
+                      )}
+                    </div>
+                    <p className="text-muted mt-1 truncate text-sm">
+                      {project.shortDescription}
+                    </p>
                   </div>
-                  <p className="text-muted mt-1 truncate text-sm">
-                    {project.shortDescription}
-                  </p>
-                </div>
 
-                <div className="hidden w-56 shrink-0 flex-wrap gap-2 lg:flex">
-                  {project.technologies?.map((technology) => (
-                    <Badge key={technology}>{technology}</Badge>
-                  ))}
-                </div>
+                  <div className="mr-15 hidden w-56 shrink-0 flex-wrap gap-2 lg:flex">
+                    {project.technologies?.map((technology) => (
+                      <Badge key={technology}>{technology}</Badge>
+                    ))}
+                  </div>
 
-                <div className="flex shrink-0 flex-col items-center gap-2">
-                  {project.githubUrl && (
-                    <a
-                      href={project.githubUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      aria-label={`Repositório de ${project.title}`}
-                      className="text-muted hover:text-fg transition-colors"
+                  <div className="flex shrink-0 flex-col items-center gap-2">
+                    <ProjectLinkButton
+                      url={project.githubUrl}
+                      tooltip="Link do repositório"
+                      label={
+                        project.githubUrl
+                          ? `Link do repositório de ${project.title}`
+                          : `${project.title} sem repositório`
+                      }
+                      className={
+                        project.githubUrl
+                          ? "text-muted hover:text-fg"
+                          : "text-muted/40"
+                      }
                     >
                       <GithubIcon className="size-5" />
-                    </a>
-                  )}
-                  {project.demoUrl && (
-                    <a
-                      href={project.demoUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      aria-label={`Demo de ${project.title}`}
-                      className="text-muted hover:text-fg transition-colors"
+                    </ProjectLinkButton>
+
+                    <ProjectLinkButton
+                      url={project.demoUrl}
+                      tooltip="App link"
+                      label={
+                        project.demoUrl
+                          ? `Link do deploy de ${project.title}`
+                          : `${project.title} sem deploy`
+                      }
+                      className={
+                        project.demoUrl ? "text-emerald-500" : "text-red-500"
+                      }
                     >
-                      <VercelIcon className="size-5" />
-                    </a>
-                  )}
+                      <MonitorIcon className="size-5" />
+                    </ProjectLinkButton>
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </Card>
         </div>
       )}

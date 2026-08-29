@@ -275,10 +275,19 @@ export function PostgresIcon(props) {
   )
 }
 
-export function VercelIcon(props) {
+export function MonitorIcon(props) {
   return (
-    <svg viewBox="0 0 24 24" fill="currentColor" {...props}>
-      <path d="M12 2 23 21H1z" />
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.8"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      {...props}
+    >
+      <rect x="2" y="4" width="20" height="13" rx="2" />
+      <path d="M12 17v4M8 21h8" />
     </svg>
   )
 }
