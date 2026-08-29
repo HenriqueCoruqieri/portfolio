@@ -1,4 +1,5 @@
 import { WORK_MODES } from "./experience"
+import { TYPE_APPS } from "./projects"
 
 export const ADMIN_ENTITIES = [
   {
@@ -44,6 +45,14 @@ export const ADMIN_ENTITIES = [
     subtitle: (item) => item.shortDescription,
     fields: [
       { name: "title", label: "Título", type: "text", required: true },
+      {
+        name: "typeApp",
+        label: "Tipo de sistema",
+        type: "select",
+        required: true,
+        options: TYPE_APPS,
+        help: "Exibido na badge ao lado do título e usado nos filtros.",
+      },
       {
         name: "shortDescription",
         label: "Descrição curta",
