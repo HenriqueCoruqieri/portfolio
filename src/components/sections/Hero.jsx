@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom"
 
 import { HERO } from "../../data/home"
+import AuroraOrb from "../AuroraOrb"
 import { DownloadIcon } from "../ui/icons"
 
 function Hero() {
@@ -41,23 +42,7 @@ function Hero() {
       </div>
 
       <div className="flex justify-center md:justify-end">
-        <div className="relative">
-          <div
-            aria-hidden="true"
-            className="absolute inset-0 -z-10 rounded-2xl bg-blue-600/30 blur-3xl"
-          />
-          <img
-            src="/profile.png"
-            alt="Henrique Coruqieri"
-            className="w-80 object-cover sm:w-96 lg:w-104"
-            style={{
-              WebkitMaskImage:
-                "radial-gradient(ellipse 78% 82% at 50% 42%, #000 55%, transparent 100%)",
-              maskImage:
-                "radial-gradient(ellipse 78% 82% at 50% 42%, #000 55%, transparent 100%)",
-            }}
-          />
-        </div>
+        <AuroraOrb />
       </div>
     </section>
   )

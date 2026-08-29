@@ -11,22 +11,22 @@ import { BIO, HEADER, SERVICES, SERVICES_HEADING, STATS } from "../data/about"
 function Sobre() {
   return (
     <>
-      <section className="mx-auto max-w-6xl px-6 pt-12 pb-2">
-        <h1 className="text-fg text-4xl font-bold tracking-tight">
-          {HEADER.title}
-        </h1>
-        <p className="text-muted mt-2">{HEADER.subtitle}</p>
-      </section>
+      <section className="mx-auto grid max-w-6xl gap-12 px-6 pt-12 pb-8 md:grid-cols-2">
+        <div>
+          <h1 className="text-fg text-4xl font-bold tracking-tight">
+            {HEADER.title}
+          </h1>
+          <p className="text-muted mt-2">{HEADER.subtitle}</p>
 
-      <section className="mx-auto grid max-w-6xl items-center gap-12 px-6 py-8 md:grid-cols-2">
-        <div className="text-muted space-y-5 leading-relaxed">
-          {BIO.map((paragraph, index) => (
-            <p key={index}>{paragraph}</p>
-          ))}
+          <div className="text-muted mt-10 space-y-5 leading-relaxed">
+            {BIO.map((paragraph, index) => (
+              <p key={index}>{paragraph}</p>
+            ))}
+          </div>
         </div>
 
         <div className="flex justify-center md:justify-end">
-          <div className="relative w-full max-w-sm">
+          <div className="relative aspect-4/5 w-full max-w-sm md:aspect-auto md:h-full">
             <div
               aria-hidden="true"
               className="absolute inset-0 -z-10 rounded-2xl bg-blue-600/30 blur-3xl"
@@ -34,7 +34,7 @@ function Sobre() {
             <img
               src="/profile.png"
               alt="Henrique Coruqieri"
-              className="aspect-4/5 w-full rounded-2xl object-cover object-top"
+              className="absolute inset-0 h-full w-full rounded-2xl object-cover object-top"
             />
           </div>
         </div>

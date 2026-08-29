@@ -142,7 +142,7 @@ function Projects() {
                     </p>
                   </div>
 
-                  <div className="mr-15 hidden w-56 shrink-0 flex-wrap gap-2 lg:flex">
+                  <div className="mr-20 hidden w-56 shrink-0 flex-wrap gap-2 lg:flex">
                     {project.technologies?.map((technology) => (
                       <Badge key={technology}>{technology}</Badge>
                     ))}
