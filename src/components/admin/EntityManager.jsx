@@ -8,18 +8,32 @@ import {
   CardHeader,
   CardTitle,
 } from "../ui/card"
+import { SearchInput } from "../ui/search-input"
 import EntityForm from "./EntityForm"
 import EntityList from "./EntityList"
+
+function normalize(text) {
+  return String(text)
+    .normalize("NFD")
+    .replace(/\p{Diacritic}/gu, "")
+    .toLowerCase()
+}
 
 function EntityManager({ entity }) {
   const { items, loading, error, create, update, remove } = useResource(
     entity.resource,
   )
 
+  const [search, setSearch] = useState("")
   const [editingItem, setEditingItem] = useState(null)
   const [formVersion, setFormVersion] = useState(0)
   const [feedback, setFeedback] = useState("")
   const [listError, setListError] = useState("")
+
+  const term = normalize(search.trim())
+  const visibleItems = term
+    ? items.filter((item) => normalize(entity.title(item)).includes(term))
+    : items
 
   async function handleSubmit(payload) {
     setListError("")
@@ -90,8 +104,23 @@ function EntityManager({ entity }) {
           <CardHeader className="shrink-0">
             <CardTitle>{entity.listTitle}</CardTitle>
             <CardDescription>
-              {loading ? "Carregando..." : `${items.length} no total.`}
+              {loading
+                ? "Carregando..."
+                : term
+                  ? `${visibleItems.length} de ${items.length}.`
+                  : `${items.length} no total.`}
             </CardDescription>
+
+            {!loading && !error && (
+              <SearchInput
+                id={`${entity.key}-search`}
+                value={search}
+                onValueChange={setSearch}
+                aria-label={`Buscar ${entity.singular}`}
+                placeholder={`Buscar ${entity.singular}...`}
+                className="mt-2"
+              />
+            )}
           </CardHeader>
           <CardContent className="flex min-h-0 flex-col gap-3 overflow-y-auto">
             {feedback && <p className="text-muted text-sm">{feedback}</p>}
@@ -102,7 +131,12 @@ function EntityManager({ entity }) {
             {!loading && !error && (
               <EntityList
                 entity={entity}
-                items={items}
+                items={visibleItems}
+                emptyMessage={
+                  term
+                    ? `Nenhum resultado para "${search.trim()}".`
+                    : entity.emptyMessage
+                }
                 editingId={editingItem?._id}
                 onEdit={handleEdit}
                 onDelete={handleDelete}

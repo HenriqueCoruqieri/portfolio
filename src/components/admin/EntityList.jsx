@@ -1,8 +1,15 @@
 import { Button } from "../ui/button"
 
-function EntityList({ entity, items, editingId, onEdit, onDelete }) {
+function EntityList({
+  entity,
+  items,
+  emptyMessage,
+  editingId,
+  onEdit,
+  onDelete,
+}) {
   if (items.length === 0) {
-    return <p className="text-muted text-sm">{entity.emptyMessage}</p>
+    return <p className="text-muted text-sm">{emptyMessage}</p>
   }
 
   return (
