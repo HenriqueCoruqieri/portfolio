@@ -12,12 +12,13 @@
   --color-accent: var(--accent);
   --color-accent-fg: var(--accent-fg);
 
-  --font-sans:
-    "Inter", system-ui, "Segoe UI", Roboto, sans-serif;
+  --font-sans: "Inter", system-ui, "Segoe UI", Roboto, sans-serif;
 }
 
 /* Tema escuro — padrão, conforme o design. */
 :root {
+  color-scheme: dark;
+
   --bg: #09090b;
   --surface: #101014;
   --line: #1f1f27;
@@ -29,6 +30,8 @@
 
 /* Tema claro — aplicado quando o <html> recebe a classe `.light`. */
 :root.light {
+  color-scheme: light;
+
   --bg: #ffffff;
   --surface: #f4f4f5;
   --line: #e4e4e7;
@@ -56,25 +59,73 @@ body {
   color: var(--accent-fg);
 }
 
+/* Barra de rolagem nativa alinhada ao tema, no mesmo visual do thumb do
+   ScrollArea do Radix (bg-muted/60 arredondado sobre trilho transparente). */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: color-mix(in srgb, var(--muted) 60%, transparent) transparent;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: color-mix(in srgb, var(--muted) 60%, transparent);
+  background-clip: padding-box;
+  border: 2px solid transparent;
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--muted);
+}
+
 /* ─── AuroraOrb ──────────────────────────────────────────────── */
 
 @keyframes orb-morph {
-  0%   { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
-  20%  { border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%; }
-  40%  { border-radius: 70% 30% 50% 50% / 30% 70% 50% 60%; }
-  60%  { border-radius: 40% 60% 30% 70% / 70% 40% 60% 30%; }
-  80%  { border-radius: 50% 40% 60% 40% / 40% 50% 60% 50%; }
-  100% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
+  0% {
+    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+  }
+  20% {
+    border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%;
+  }
+  40% {
+    border-radius: 70% 30% 50% 50% / 30% 70% 50% 60%;
+  }
+  60% {
+    border-radius: 40% 60% 30% 70% / 70% 40% 60% 30%;
+  }
+  80% {
+    border-radius: 50% 40% 60% 40% / 40% 50% 60% 50%;
+  }
+  100% {
+    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+  }
 }
 
 @keyframes orb-float {
-  0%, 100% { transform: translateY(0)     scale(1);    }
-  50%       { transform: translateY(-14px) scale(1.03); }
+  0%,
+  100% {
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    transform: translateY(-14px) scale(1.03);
+  }
 }
 
 @keyframes label-drift {
-  from { transform: translate(0,         0);         }
-  to   { transform: translate(var(--tx), var(--ty)); }
+  from {
+    transform: translate(0, 0);
+  }
+  to {
+    transform: translate(var(--tx), var(--ty));
+  }
 }
 
 .aurora-stage {
@@ -92,7 +143,11 @@ body {
   width: 420px;
   height: 420px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(37, 99, 235, 0.14) 0%, transparent 70%);
+  background: radial-gradient(
+    circle,
+    rgba(37, 99, 235, 0.14) 0%,
+    transparent 70%
+  );
   filter: blur(24px);
   animation: orb-float 7s ease-in-out infinite;
   pointer-events: none;
@@ -118,8 +173,8 @@ body {
   height: 260px;
   background: radial-gradient(circle at 30% 40%, #2563eb, transparent 70%);
   animation:
-    orb-morph 8s  ease-in-out infinite,
-    orb-float 7s  ease-in-out infinite;
+    orb-morph 8s ease-in-out infinite,
+    orb-float 7s ease-in-out infinite;
 }
 
 .aurora-layer--purple {
@@ -128,7 +183,7 @@ body {
   background: radial-gradient(circle at 70% 30%, #7c3aed, transparent 70%);
   animation:
     orb-morph 11s ease-in-out infinite reverse,
-    orb-float 9s  ease-in-out infinite reverse;
+    orb-float 9s ease-in-out infinite reverse;
 }
 
 .aurora-layer--cyan {
@@ -136,8 +191,8 @@ body {
   height: 210px;
   background: radial-gradient(circle at 50% 70%, #0891b2, transparent 70%);
   animation:
-    orb-morph 7s  ease-in-out infinite 1s,
-    orb-float 5s  ease-in-out infinite;
+    orb-morph 7s ease-in-out infinite 1s,
+    orb-float 5s ease-in-out infinite;
 }
 
 .aurora-label {
