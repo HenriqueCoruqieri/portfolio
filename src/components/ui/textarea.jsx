@@ -5,7 +5,7 @@ function Textarea({ className, rows = 4, ...props }) {
     <textarea
       rows={rows}
       className={cn(
-        "border-line bg-surface text-fg placeholder:text-muted focus-visible:border-accent w-full resize-y rounded-lg border px-3 py-2.5 text-sm transition-colors outline-none",
+        "border-line bg-surface text-fg placeholder:text-muted focus-visible:border-accent w-full resize-y rounded-lg border px-3 py-2.5 text-sm transition-colors outline-none aria-invalid:border-red-400",
         className,
       )}
       {...props}
