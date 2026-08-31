@@ -151,7 +151,7 @@ function Projects() {
                   <div className="flex shrink-0 flex-col items-center gap-2">
                     <ProjectLinkButton
                       url={project.githubUrl}
-                      tooltip="Link do repositório"
+                      tooltip="Repositório"
                       label={
                         project.githubUrl
                           ? `Link do repositório de ${project.title}`

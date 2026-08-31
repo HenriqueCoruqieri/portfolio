@@ -4,7 +4,7 @@ function Technologies() {
   return (
     <section id="skills" className="mx-auto max-w-6xl px-6 pt-0 pb-16">
       <p className="text-muted mb-8 text-sm font-semibold tracking-[0.2em] uppercase">
-        Tecnologias
+        Principal stack
       </p>
       <div className="flex flex-wrap items-center gap-10">
         {TECHNOLOGIES.map(({ name, Icon }) => (
