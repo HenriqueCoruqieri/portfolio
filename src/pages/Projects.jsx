@@ -2,6 +2,14 @@ import { useState } from "react"
 
 import { Badge } from "../components/ui/badge"
 import { Card } from "../components/ui/card"
+import {
+  Dialog,
+  DialogBody,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from "../components/ui/dialog"
 import { GithubIcon, MonitorIcon } from "../components/ui/icons"
 import {
   ALL_PROJECTS_FILTER,
@@ -34,7 +42,10 @@ function matchesFilter(project, filter) {
 
 function ProjectLinkButton({ url, label, tooltip, className, children }) {
   return (
-    <span className="group relative flex">
+    <span
+      className="group relative flex"
+      onClick={(event) => event.stopPropagation()}
+    >
       <button
         type="button"
         disabled={!url}
@@ -64,6 +75,7 @@ function byOrder(a, b) {
 function Projects() {
   const { items, loading, error } = useResource("projects")
   const [filter, setFilter] = useState(ALL_PROJECTS_FILTER)
+  const [selectedProject, setSelectedProject] = useState(null)
 
   const projects = [...items]
     .sort(byOrder)
@@ -110,7 +122,17 @@ function Projects() {
               {projects.map((project) => (
                 <div
                   key={project._id}
-                  className="hover:bg-line/40 flex items-center gap-5 py-5 pr-8 pl-6 transition-colors"
+                  role="button"
+                  tabIndex={0}
+                  aria-label={`Ver detalhes de ${project.title}`}
+                  onClick={() => setSelectedProject(project)}
+                  onKeyDown={(event) => {
+                    if (event.key === "Enter" || event.key === " ") {
+                      event.preventDefault()
+                      setSelectedProject(project)
+                    }
+                  }}
+                  className="hover:bg-line/40 focus-visible:ring-accent flex cursor-pointer items-center gap-5 py-5 pr-8 pl-6 transition-colors outline-none focus-visible:ring-2 focus-visible:ring-inset"
                 >
                   {project.imageUrl ? (
                     <img
@@ -187,6 +209,54 @@ function Projects() {
           </Card>
         </div>
       )}
+
+      <Dialog
+        open={Boolean(selectedProject)}
+        onOpenChange={(open) => {
+          if (!open) setSelectedProject(null)
+        }}
+      >
+        <DialogContent>
+          <DialogHeader>
+            <div className="flex items-center gap-2">
+              <DialogTitle>{selectedProject?.title}</DialogTitle>
+              {selectedProject?.typeApp && (
+                <Badge
+                  variant="accent"
+                  className="shrink-0 tracking-wide uppercase"
+                >
+                  {selectedProject.typeApp}
+                </Badge>
+              )}
+            </div>
+            <DialogDescription>
+              {selectedProject?.shortDescription}
+            </DialogDescription>
+          </DialogHeader>
+
+          <DialogBody className="flex flex-col gap-5">
+            {selectedProject?.imageUrl && (
+              <img
+                src={selectedProject.imageUrl}
+                alt=""
+                className="bg-bg border-line h-64 w-full shrink-0 rounded-lg border object-cover object-top"
+              />
+            )}
+
+            <p className="text-muted text-sm leading-relaxed whitespace-pre-line">
+              {selectedProject?.description}
+            </p>
+
+            {selectedProject?.technologies?.length > 0 && (
+              <div className="flex flex-wrap gap-2">
+                {selectedProject.technologies.map((technology) => (
+                  <Badge key={technology}>{technology}</Badge>
+                ))}
+              </div>
+            )}
+          </DialogBody>
+        </DialogContent>
+      </Dialog>
     </div>
   )
 }
