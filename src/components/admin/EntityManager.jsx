@@ -85,30 +85,32 @@ function EntityManager({ entity }) {
         </CardContent>
       </Card>
 
-      <Card>
-        <CardHeader>
-          <CardTitle>{entity.listTitle}</CardTitle>
-          <CardDescription>
-            {loading ? "Carregando..." : `${items.length} no total.`}
-          </CardDescription>
-        </CardHeader>
-        <CardContent className="flex flex-col gap-3">
-          {feedback && <p className="text-muted text-sm">{feedback}</p>}
-          {(error || listError) && (
-            <p className="text-sm text-red-400">{error || listError}</p>
-          )}
+      <div className="relative">
+        <Card className="overflow-hidden lg:absolute lg:inset-x-0 lg:top-0 lg:max-h-full">
+          <CardHeader className="shrink-0">
+            <CardTitle>{entity.listTitle}</CardTitle>
+            <CardDescription>
+              {loading ? "Carregando..." : `${items.length} no total.`}
+            </CardDescription>
+          </CardHeader>
+          <CardContent className="flex min-h-0 flex-col gap-3 overflow-y-auto">
+            {feedback && <p className="text-muted text-sm">{feedback}</p>}
+            {(error || listError) && (
+              <p className="text-sm text-red-400">{error || listError}</p>
+            )}
 
-          {!loading && !error && (
-            <EntityList
-              entity={entity}
-              items={items}
-              editingId={editingItem?._id}
-              onEdit={handleEdit}
-              onDelete={handleDelete}
-            />
-          )}
-        </CardContent>
-      </Card>
+            {!loading && !error && (
+              <EntityList
+                entity={entity}
+                items={items}
+                editingId={editingItem?._id}
+                onEdit={handleEdit}
+                onDelete={handleDelete}
+              />
+            )}
+          </CardContent>
+        </Card>
+      </div>
     </div>
   )
 }

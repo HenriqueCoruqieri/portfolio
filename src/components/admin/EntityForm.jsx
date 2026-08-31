@@ -1,11 +1,14 @@
 import { useState } from "react"
 
 import { toFormValues, toPayload } from "../../lib/entityFields"
+import { cn } from "../../lib/utils"
 import { Button } from "../ui/button"
 import { Input } from "../ui/input"
 import { Select } from "../ui/select"
 import { Textarea } from "../ui/textarea"
 import ImageField from "./ImageField"
+
+const FULL_WIDTH_TYPES = ["textarea", "image", "list"]
 
 function EntityForm({ entity, item, onSubmit, onCancel }) {
   const [values, setValues] = useState(() => toFormValues(entity.fields, item))
@@ -31,7 +34,10 @@ function EntityForm({ entity, item, onSubmit, onCancel }) {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+    <form
+      onSubmit={handleSubmit}
+      className="grid grid-cols-1 gap-x-4 gap-y-5 sm:grid-cols-2"
+    >
       {entity.fields.map((field) => {
         const id = `${entity.key}-${field.name}`
 
@@ -40,7 +46,7 @@ function EntityForm({ entity, item, onSubmit, onCancel }) {
             <label
               key={field.name}
               htmlFor={id}
-              className="text-fg flex items-center gap-2 text-sm font-medium"
+              className="border-line text-fg flex items-center gap-2.5 rounded-lg border px-3 py-2.5 text-sm font-medium sm:col-span-2"
             >
               <input
                 id={id}
@@ -55,10 +61,16 @@ function EntityForm({ entity, item, onSubmit, onCancel }) {
         }
 
         return (
-          <div key={field.name} className="flex flex-col gap-1.5">
+          <div
+            key={field.name}
+            className={cn(
+              "flex flex-col gap-1.5",
+              FULL_WIDTH_TYPES.includes(field.type) && "sm:col-span-2",
+            )}
+          >
             <label htmlFor={id} className="text-fg text-sm font-medium">
               {field.label}
-              {field.required && <span className="text-muted"> *</span>}
+              {field.required && <span className="text-accent"> *</span>}
             </label>
 
             {field.type === "textarea" ? (
@@ -102,14 +114,16 @@ function EntityForm({ entity, item, onSubmit, onCancel }) {
               />
             )}
 
-            {field.help && <p className="text-muted text-xs">{field.help}</p>}
+            {field.help && (
+              <p className="text-muted text-xs leading-relaxed">{field.help}</p>
+            )}
           </div>
         )
       })}
 
-      {error && <p className="text-sm text-red-400">{error}</p>}
+      {error && <p className="text-sm text-red-400 sm:col-span-2">{error}</p>}
 
-      <div className="mt-2 flex items-center gap-3">
+      <div className="border-line flex items-center gap-3 border-t pt-5 sm:col-span-2">
         <Button type="submit" disabled={submitting}>
           {submitting
             ? "Salvando..."

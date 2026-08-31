@@ -67,15 +67,16 @@ function ImageField({ id, value, placeholder, required, onChange }) {
             Remover
           </Button>
         )}
-      </div>
 
-      <Input
-        type="url"
-        value={value}
-        placeholder={placeholder || "ou cole uma URL"}
-        required={required}
-        onChange={(event) => onChange(event.target.value)}
-      />
+        <Input
+          type="url"
+          value={value}
+          placeholder={placeholder || "ou cole uma URL"}
+          required={required}
+          onChange={(event) => onChange(event.target.value)}
+          className="min-w-48 flex-1"
+        />
+      </div>
 
       {error && <p className="text-sm text-red-400">{error}</p>}
     </div>
