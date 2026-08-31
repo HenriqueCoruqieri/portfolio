@@ -251,6 +251,23 @@ export function SendIcon(props) {
   )
 }
 
+export function PencilIcon(props) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.8"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      {...props}
+    >
+      <path d="M4 20h4L19.4 8.6a2.8 2.8 0 0 0-4-4L4 16z" />
+      <path d="m14.5 5.5 4 4" />
+    </svg>
+  )
+}
+
 /* --- Logos de tecnologia --- */
 
 export function NextIcon(props) {

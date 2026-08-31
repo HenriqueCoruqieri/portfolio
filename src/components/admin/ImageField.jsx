@@ -5,7 +5,7 @@ import { uploadImage } from "../../services/uploadService"
 import { Button } from "../ui/button"
 import { Input } from "../ui/input"
 
-function ImageField({ id, value, placeholder, required, onChange }) {
+function ImageField({ id, value, placeholder, required, disabled, onChange }) {
   const { token } = useAuth()
   const inputRef = useRef(null)
   const [uploading, setUploading] = useState(false)
@@ -53,7 +53,7 @@ function ImageField({ id, value, placeholder, required, onChange }) {
         <Button
           type="button"
           onClick={() => inputRef.current?.click()}
-          disabled={uploading}
+          disabled={uploading || disabled}
           className="bg-surface text-fg border-line border"
         >
           {uploading ? "Enviando..." : "Enviar imagem"}
@@ -62,6 +62,7 @@ function ImageField({ id, value, placeholder, required, onChange }) {
           <Button
             type="button"
             onClick={() => onChange("")}
+            disabled={disabled}
             className="bg-surface text-muted border-line border"
           >
             Remover
@@ -73,6 +74,7 @@ function ImageField({ id, value, placeholder, required, onChange }) {
           value={value}
           placeholder={placeholder || "ou cole uma URL"}
           required={required}
+          disabled={disabled}
           onChange={(event) => onChange(event.target.value)}
           className="min-w-48 flex-1"
         />

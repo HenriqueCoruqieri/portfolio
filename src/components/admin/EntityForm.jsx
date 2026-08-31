@@ -10,7 +10,7 @@ import ImageField from "./ImageField"
 
 const FULL_WIDTH_TYPES = ["textarea", "image", "list"]
 
-function EntityForm({ entity, item, onSubmit, onCancel }) {
+function EntityForm({ entity, item, disabled, onSubmit, onCancel }) {
   const [values, setValues] = useState(() => toFormValues(entity.fields, item))
   const [error, setError] = useState("")
   const [submitting, setSubmitting] = useState(false)
@@ -52,8 +52,9 @@ function EntityForm({ entity, item, onSubmit, onCancel }) {
                 id={id}
                 type="checkbox"
                 checked={values[field.name]}
+                disabled={disabled}
                 onChange={(event) => setValue(field.name, event.target.checked)}
-                className="border-line accent-accent size-4 rounded"
+                className="border-line accent-accent size-4 rounded disabled:cursor-not-allowed disabled:opacity-60"
               />
               {field.label}
             </label>
@@ -79,6 +80,7 @@ function EntityForm({ entity, item, onSubmit, onCancel }) {
                 value={values[field.name]}
                 placeholder={field.placeholder}
                 required={field.required}
+                disabled={disabled}
                 onChange={(event) => setValue(field.name, event.target.value)}
               />
             ) : field.type === "select" ? (
@@ -86,6 +88,7 @@ function EntityForm({ entity, item, onSubmit, onCancel }) {
                 id={id}
                 value={values[field.name]}
                 required={field.required}
+                disabled={disabled}
                 onChange={(event) => setValue(field.name, event.target.value)}
               >
                 <option value="">Selecione...</option>
@@ -101,6 +104,7 @@ function EntityForm({ entity, item, onSubmit, onCancel }) {
                 value={values[field.name]}
                 placeholder={field.placeholder}
                 required={field.required}
+                disabled={disabled}
                 onChange={(url) => setValue(field.name, url)}
               />
             ) : (
@@ -110,6 +114,7 @@ function EntityForm({ entity, item, onSubmit, onCancel }) {
                 value={values[field.name]}
                 placeholder={field.placeholder}
                 required={field.required}
+                disabled={disabled}
                 onChange={(event) => setValue(field.name, event.target.value)}
               />
             )}
@@ -123,25 +128,27 @@ function EntityForm({ entity, item, onSubmit, onCancel }) {
 
       {error && <p className="text-sm text-red-400 sm:col-span-2">{error}</p>}
 
-      <div className="border-line flex items-center gap-3 border-t pt-5 sm:col-span-2">
-        <Button type="submit" disabled={submitting}>
-          {submitting
-            ? "Salvando..."
-            : item
-              ? "Salvar alterações"
-              : "Adicionar"}
-        </Button>
-
-        {item && (
-          <Button
-            type="button"
-            onClick={onCancel}
-            className="bg-surface text-fg border-line border"
-          >
-            Cancelar
+      {!disabled && (
+        <div className="border-line flex items-center gap-3 border-t pt-5 sm:col-span-2">
+          <Button type="submit" disabled={submitting}>
+            {submitting
+              ? "Salvando..."
+              : item
+                ? "Salvar alterações"
+                : "Adicionar"}
           </Button>
-        )}
-      </div>
+
+          {item && (
+            <Button
+              type="button"
+              onClick={onCancel}
+              className="bg-surface text-fg border-line border"
+            >
+              Cancelar
+            </Button>
+          )}
+        </div>
+      )}
     </form>
   )
 }
