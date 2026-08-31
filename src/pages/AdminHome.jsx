@@ -2,6 +2,7 @@ import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 
 import EntityManager from "../components/admin/EntityManager"
+import ProfileManager from "../components/admin/ProfileManager"
 import { Button } from "../components/ui/button"
 import { ADMIN_ENTITIES } from "../data/adminEntities"
 import { useAuth } from "../hooks/useAuth"
@@ -68,7 +69,11 @@ function AdminHome() {
           ))}
         </div>
 
-        <EntityManager key={activeEntity.key} entity={activeEntity} />
+        {activeEntity.singleton ? (
+          <ProfileManager key={activeEntity.key} entity={activeEntity} />
+        ) : (
+          <EntityManager key={activeEntity.key} entity={activeEntity} />
+        )}
       </div>
     </div>
   )

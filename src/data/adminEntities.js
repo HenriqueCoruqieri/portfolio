@@ -3,6 +3,32 @@ import { TYPE_APPS } from "./projects"
 
 export const ADMIN_ENTITIES = [
   {
+    key: "profile",
+    resource: "profile",
+    label: "Perfil",
+    singular: "perfil",
+    singleton: true,
+    formTitle: "Informações do perfil",
+    readOnlyMessage: "Clique no lápis para editar os dados.",
+    fields: [
+      { name: "name", label: "Nome", type: "text", required: true },
+      { name: "lastName", label: "Sobrenome", type: "text", required: true },
+      { name: "email", label: "E-mail", type: "email", required: true },
+      { name: "phone", label: "Telefone", type: "text" },
+      {
+        name: "address",
+        label: "Endereço",
+        type: "text",
+        placeholder: "São Paulo, SP - Brasil",
+        help: "Exibido no bloco de localização da página de contato.",
+      },
+      { name: "bio", label: "Bio", type: "textarea", required: true },
+      { name: "avatarUrl", label: "Foto", type: "image" },
+      { name: "githubUrl", label: "URL do GitHub", type: "url" },
+      { name: "linkedinUrl", label: "URL do LinkedIn", type: "url" },
+    ],
+  },
+  {
     key: "skills",
     resource: "skills",
     label: "Skills",
