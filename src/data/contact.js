@@ -15,7 +15,12 @@ export const CONTACT_CTA = {
 }
 
 export const CONTACT_FORM_FIELDS = [
-  { name: "name", label: "Nome", type: "text", placeholder: "Seu nome" },
+  {
+    name: "name",
+    label: "Nome",
+    type: "text",
+    placeholder: "Seu nome (opcional)",
+  },
   {
     name: "email",
     label: "Email",
@@ -35,6 +40,9 @@ export const CONTACT_FORM_FIELDS = [
     placeholder: "Conte-me sobre o seu projeto...",
   },
 ]
+
+export const CONTACT_SUCCESS_MESSAGE =
+  "Mensagem enviada! Responderei assim que possível."
 
 export const EMPTY_CONTACT_FORM = {
   name: "",
