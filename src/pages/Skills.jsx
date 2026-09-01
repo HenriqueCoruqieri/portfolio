@@ -1,9 +1,11 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
 import learningImage from "../assets/learning.png"
 import { Card } from "../components/ui/card"
 import { LEARNING_CARD, SKILLS_HEADER } from "../data/skills"
 import { useResource } from "../hooks/useResource"
+import { detectIconTone, iconToneClass } from "../lib/iconTone"
+import { cn } from "../lib/utils"
 
 function groupByCategory(skills) {
   const groups = new Map()
@@ -32,6 +34,28 @@ function groupByCategory(skills) {
 function Skills() {
   const { items: skills, loading, error } = useResource("skills")
   const [activeCategory, setActiveCategory] = useState(null)
+  const [iconTones, setIconTones] = useState({})
+
+  useEffect(() => {
+    let active = true
+
+    async function detectTones() {
+      const urls = [...new Set(skills.map((skill) => skill.iconUrl))].filter(
+        Boolean,
+      )
+      const tones = await Promise.all(urls.map(detectIconTone))
+
+      if (active) {
+        setIconTones(Object.fromEntries(urls.map((url, i) => [url, tones[i]])))
+      }
+    }
+
+    detectTones()
+
+    return () => {
+      active = false
+    }
+  }, [skills])
 
   const groups = groupByCategory(skills)
   const activeGroup =
@@ -107,7 +131,10 @@ function Skills() {
                         src={skill.iconUrl}
                         alt=""
                         loading="lazy"
-                        className="size-10 shrink-0 object-contain"
+                        className={cn(
+                          "size-10 shrink-0 object-contain",
+                          iconToneClass(iconTones[skill.iconUrl]),
+                        )}
                       />
                     ) : (
                       <div className="bg-surface text-muted flex size-10 shrink-0 items-center justify-center rounded-lg text-sm font-semibold">

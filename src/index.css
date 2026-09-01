@@ -15,6 +15,9 @@
   --font-sans: "Inter", system-ui, "Segoe UI", Roboto, sans-serif;
 }
 
+@custom-variant dark (&:where(:root:not(.light), :root:not(.light) *));
+@custom-variant light (&:where(:root.light, :root.light *));
+
 /* Tema escuro — padrão, conforme o design. */
 :root {
   color-scheme: dark;
