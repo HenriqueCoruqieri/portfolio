@@ -17,10 +17,12 @@ import {
   CONTACT_CTA,
   CONTACT_FORM_FIELDS,
   CONTACT_HEADER,
+  CONTACT_SUCCESS_MESSAGE,
   EMPTY_CONTACT_FORM,
 } from "../data/contact"
 import { useResource } from "../hooks/useResource"
 import { validateContact } from "../lib/contactSchema"
+import { createResource } from "../services/resourceService"
 
 function buildInfoItems(profile) {
   return [
@@ -39,6 +41,9 @@ function Contact() {
   const { items, loading } = useResource("profile")
   const [values, setValues] = useState(EMPTY_CONTACT_FORM)
   const [errors, setErrors] = useState({})
+  const [submitting, setSubmitting] = useState(false)
+  const [feedback, setFeedback] = useState("")
+  const [sendError, setSendError] = useState("")
 
   const infoItems = buildInfoItems(items[0] ?? {})
 
@@ -46,9 +51,27 @@ function Contact() {
     setValues((previous) => ({ ...previous, [name]: value }))
   }
 
-  function handleSubmit(event) {
+  async function handleSubmit(event) {
     event.preventDefault()
-    setErrors(validateContact(values).errors)
+    setFeedback("")
+    setSendError("")
+
+    const { data, errors: fieldErrors } = validateContact(values)
+    setErrors(fieldErrors)
+
+    if (!data) return
+
+    setSubmitting(true)
+
+    try {
+      await createResource("messages", data)
+      setValues(EMPTY_CONTACT_FORM)
+      setFeedback(CONTACT_SUCCESS_MESSAGE)
+    } catch (err) {
+      setSendError(err.message)
+    } finally {
+      setSubmitting(false)
+    }
   }
 
   return (
@@ -119,8 +142,11 @@ function Contact() {
               )
             })}
 
-            <Button type="submit" className="w-full">
-              Enviar mensagem
+            {feedback && <p className="text-sm text-emerald-500">{feedback}</p>}
+            {sendError && <p className="text-sm text-red-400">{sendError}</p>}
+
+            <Button type="submit" disabled={submitting} className="w-full">
+              {submitting ? "Enviando..." : "Enviar mensagem"}
             </Button>
           </form>
         </Card>
