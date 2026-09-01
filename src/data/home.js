@@ -19,7 +19,11 @@ export const HERO = {
     "Desenvolvo aplicações web modernas, de alta performance e com foco na melhor experiência do usuário.",
   actions: {
     primary: { label: "Ver projetos", to: "/projetos" },
-    secondary: { label: "Baixar currículo", href: "/curriculo.pdf" },
+    secondary: {
+      label: "Baixar currículo",
+      href: "/curriculo.pdf",
+      download: "Curriculo-Henrique-Coruqieri.pdf",
+    },
   },
 }
 

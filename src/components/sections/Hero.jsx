@@ -33,6 +33,7 @@ function Hero() {
           </Link>
           <a
             href={HERO.actions.secondary.href}
+            download={HERO.actions.secondary.download}
             className="border-line text-fg hover:bg-surface inline-flex items-center gap-2 rounded-lg border px-6 py-3 text-sm font-medium transition-colors"
           >
             {HERO.actions.secondary.label}
