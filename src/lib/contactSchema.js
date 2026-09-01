@@ -4,8 +4,8 @@ export const contactSchema = z.object({
   name: z
     .string()
     .trim()
-    .min(2, "Informe seu nome com pelo menos 2 caracteres.")
-    .max(80, "O nome deve ter no máximo 80 caracteres."),
+    .max(80, "O nome deve ter no máximo 80 caracteres.")
+    .optional(),
   email: z.email("Informe um e-mail válido."),
   subject: z
     .string()

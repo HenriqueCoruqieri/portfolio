@@ -1,4 +1,33 @@
+import { CONTACT_MAIL, isMailConfigured, resend } from "../config/resend.js"
 import Message from "../models/Message.js"
+
+export function buildEmailBody({ name, message }) {
+  const greeting = name?.trim()
+    ? `Olá, meu nome é ${name.trim()}.
+
+`
+    : ""
+  return `${greeting}${message}`
+}
+
+async function notifyByEmail({ name, email, subject, message }) {
+  if (!isMailConfigured()) {
+    console.error("Resend não configurado: e-mail de contato não enviado")
+    return
+  }
+
+  const { error } = await resend.emails.send({
+    from: CONTACT_MAIL.from,
+    to: CONTACT_MAIL.to,
+    replyTo: email,
+    subject,
+    text: buildEmailBody({ name, message }),
+  })
+
+  if (error) {
+    console.error("Falha ao enviar e-mail de contato: ", error)
+  }
+}
 
 export async function getAllMessages(req, res) {
   try {
@@ -12,7 +41,17 @@ export async function getAllMessages(req, res) {
 
 export async function sendMessage(req, res) {
   try {
-    const message = await Message.create(req.body)
+    const { name, email, subject, message: text } = req.body
+
+    const message = await Message.create({
+      name,
+      email,
+      subject,
+      message: text,
+    })
+
+    await notifyByEmail({ name, email, subject, message: text })
+
     res.status(201).json(message)
   } catch (error) {
     console.error(error)

@@ -10,7 +10,7 @@ import { verifyToken } from "../middlewares/authMiddleware.js"
 const router = Router()
 
 router.get("/", verifyToken, getAllMessages)
-router.post("/", verifyToken, sendMessage)
+router.post("/", sendMessage)
 router.delete("/:id", verifyToken, deleteMessage)
 
 export default router
