@@ -7,8 +7,16 @@ import {
   CardTitle,
 } from "../components/ui/card"
 import { BIO, HEADER, SERVICES, SERVICES_HEADING, STATS } from "../data/about"
+import { useResource } from "../hooks/useResource"
+
+const FALLBACK_AVATAR = "/profile.png"
 
 function Sobre() {
+  const { items } = useResource("profile")
+
+  const profile = items[0] ?? {}
+  const fullName = [profile.name, profile.lastName].filter(Boolean).join(" ")
+
   return (
     <>
       <section className="mx-auto grid max-w-6xl gap-12 px-6 pt-12 pb-8 md:grid-cols-2">
@@ -32,8 +40,8 @@ function Sobre() {
               className="absolute inset-0 -z-10 rounded-2xl bg-blue-600/30 blur-3xl"
             />
             <img
-              src="/profile.png"
-              alt="Henrique Coruqieri"
+              src={profile.avatarUrl || FALLBACK_AVATAR}
+              alt={fullName}
               className="absolute inset-0 h-full w-full rounded-2xl object-cover object-top"
             />
           </div>

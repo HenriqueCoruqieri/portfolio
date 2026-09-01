@@ -1,9 +1,17 @@
 import { useNavigate } from "react-router-dom"
 
 import { SOCIAL_LINKS } from "../../data/footer"
+import { useResource } from "../../hooks/useResource"
 
 function Footer() {
   const navigate = useNavigate()
+  const { items } = useResource("profile")
+
+  const profile = items[0] ?? {}
+  const links = SOCIAL_LINKS.map((link) => ({
+    ...link,
+    href: link.field ? profile[link.field] : link.href,
+  })).filter((link) => link.href)
 
   function handleNavigate({ href, external }) {
     if (external) {
@@ -21,7 +29,7 @@ function Footer() {
           © 2026 Henrique Coruqieri. Todos os direitos reservados.
         </p>
         <div className="flex items-center gap-3">
-          {SOCIAL_LINKS.map(({ label, href, external, Icon }) => (
+          {links.map(({ label, href, external, Icon }) => (
             <button
               key={label}
               type="button"
