@@ -2,9 +2,14 @@ import { Link } from "react-router-dom"
 
 import { STATS } from "../../data/about"
 import { ABOUT } from "../../data/home"
+import { useResource } from "../../hooks/useResource"
 import StatCard from "../StatCard"
 
 function About() {
+  const { items } = useResource("profile")
+
+  const profile = items[0] ?? {}
+
   return (
     <section
       id="sobre"
@@ -16,7 +21,7 @@ function About() {
             {ABOUT.heading}
           </h2>
           <p className="text-muted mt-6 max-w-md leading-relaxed">
-            {ABOUT.paragraph}
+            {profile.bio}
           </p>
           <Link
             to={ABOUT.cta.to}

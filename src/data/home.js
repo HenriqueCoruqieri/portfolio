@@ -44,7 +44,5 @@ export const HOME_STATS = [
 
 export const ABOUT = {
   heading: "Sobre mim",
-  paragraph:
-    "Sou desenvolvedor Full Stack apaixonado por criar soluções digitais eficientes e escaláveis. Atualmente, foco em desenvolver aplicações com Next.js, React, TypeScript, Node.js e PostgreSQL.",
   cta: { label: "Saiba mais sobre mim", to: "/sobre" },
 }
