@@ -17,7 +17,7 @@ Uso: /implement <descrição da feature>
 Coleta a spec da feature descrita pelo usuário.
 Invoca o Code Writer para implementar o código.
 Invoca o Code Reviewer para revisar e corrigir o código produzido.
-Invoca o Commit Documenter para sugerir a mensagem de commit.
+Invoca o Commit Writer para sugerir a mensagem de commit.
 Apresenta o resultado consolidado ao usuário.
 
 ---
@@ -68,9 +68,9 @@ Entregue o relatório de revisão ao final.
 
 Aguarde o relatório completo do Code Reviewer antes de prosseguir.
 
-## Etapa 3 — Commit Documenter
+## Etapa 3 — Commit Writer
 
-Invoque o agente commit-documenter com o seguinte contexto:
+Invoque o agente commit-writer com o seguinte contexto:
 
 O pipeline de implementação foi concluído. Seguem os relatórios:
 
@@ -99,7 +99,7 @@ Consolide os resultados das três etapas e apresente ao usuário no seguinte for
 ### Sugestão de commit
 
 \`\`\`
-[mensagem sugerida pelo Commit Documenter]
+[mensagem sugerida pelo Commit Writer]
 \`\`\`
 
 ---s

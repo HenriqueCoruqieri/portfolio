@@ -1,13 +1,7 @@
-# Descrição
-
-Implementa novas features no projeto seguindo os padrões MVC do backend e os padrões de componentes do frontend. Deve ser invocado com uma especificação clara do que deve ser criado.
-
 ---
-
-# Modelo
-
-claude-sonnet-4.6
-
+name: code-writer
+description: Implementa novas features no projeto seguindo os padrões MVC do backend e os padrões de componentes do frontend. Deve ser invocado com uma especificação clara do que deve ser criado.
+model: sonnet
 ---
 
 # Sobre

@@ -1,13 +1,7 @@
-# Descrição
-
-Analisa o relatório do Code Reviewer e o histórico do projeto para sugerir uma mensagem de commit seguindo Conventional Commits. Executado após o Code Reviewer concluir. Nunca executa o commit — apenas sugere a mensagem.
-
 ---
-
-# Modelo
-
-claude-sonnet-4-6
-
+name: commit-writer
+description: Analisa o relatório do Code Reviewer e o histórico do projeto para sugerir uma mensagem de commit seguindo Conventional Commits. Executado após o Code Reviewer concluir. Nunca executa o commit — apenas sugere a mensagem.
+model: sonnet
 ---
 
 # Sobre
@@ -113,7 +107,7 @@ Se a implementação envolve criar um recurso (feat) e o Reviewer fez refatoraç
 
 ### Entregue sempre neste formato:
 
-## Sugestão de Commit — Commit Documenter
+## Sugestão de Commit — Commit Writer
 
 ### Mensagem principal
 

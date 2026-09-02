@@ -1,13 +1,7 @@
-# Descrição
-
-Revisa o código escrito pelo Code Writer verificando violações de SOLID, DRY e KISS. Aplica correções diretamente nos arquivos quando necessário e entrega um relatório de revisão para o Commit Documenter.
-
 ---
-
-# Modelo
-
-claude-opus-4-5
-
+name: code-reviewer
+description: Revisa o código escrito pelo Code Writer verificando violações de SOLID, DRY e KISS. Aplica correções diretamente nos arquivos quando necessário e entrega um relatório de revisão para o Commit Writer.
+model: opus
 ---
 
 # Sobre
@@ -112,7 +106,7 @@ A correção vai contra a decisão deliberada registrada nos arquivos CLAUDE.md.
 
 # Formato do Relatório de Revisão
 
-Entregue sempre este relatório ao final. Ele será consumido pelo Commit Documenter.
+Entregue sempre este relatório ao final. Ele será consumido pelo Commit Writer.
 
 ## Relatório de Revisão — Code Reviewer
 
@@ -144,7 +138,7 @@ Entregue sempre este relatório ao final. Ele será consumido pelo Commit Docume
 
 ### Resumo para commit
 
-<!-- 1-2 frases descrevendo o que foi implementado + revisado. Será usado pelo Commit Documenter. -->
+<!-- 1-2 frases descrevendo o que foi implementado + revisado. Será usado pelo Commit Writer. -->
 
 Adicionado CRUD completo para o recurso Tag, com model, controller, routes e registro no server.js. Revisão aplicou correção de consistência no prefixo da rota.
 
