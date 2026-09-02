@@ -6,5 +6,5 @@ export const SKILLS_HEADER = {
 export const LEARNING_CARD = {
   title: "Em constante evolução",
   description:
-    "Visando sempre melhorar minhas habilidades técnicas e conhecimentos, buscando novos desafios e oportunidades para me capacitar e evoluir.",
+    "Visando sempre melhorar minhas habilidades técnicas e conhecimentos, estudando, praticando e aplicando a projetos práticos.",
 }

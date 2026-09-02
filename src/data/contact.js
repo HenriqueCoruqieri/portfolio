@@ -1,17 +1,17 @@
 export const CONTACT_HEADER = {
   title: "Contato",
-  subtitle: "Vamos conversar sobre o seu projeto",
+  subtitle:
+    "Totalmente disponível e aberto a novas oportunidades, me mande uma mensagem!",
 }
 
 export const CONTACT_AVAILABILITY = {
   title: "Disponibilidade",
-  info: "Projetos freelancer",
+  info: "Cargo CLT, PJ ou Freelancer",
 }
 
 export const CONTACT_CTA = {
   title: "Vamos trabalhar juntos?",
-  description:
-    "Estou sempre aberto a novos desafios e oportunidades. Entre em contato e vamos transformar sua ideia em realidade!",
+  description: "Entre em contato e vamos transformar sua ideia em realidade!",
 }
 
 export const CONTACT_FORM_FIELDS = [
