@@ -1,10 +1,10 @@
 export const SKILLS_HEADER = {
   title: "Skills",
-  subtitle: "Tecnologias e ferramentas que utilizo no dia a dia",
+  subtitle: "Tecnologias e ferramentas que utilizo",
 }
 
 export const LEARNING_CARD = {
-  title: "Sempre aprendendo",
+  title: "Em constante evolução",
   description:
-    "A tecnologia está sempre evoluindo e eu também. Atualmente estudando novos conceitos e aprimorando minhas habilidades todos os dias.",
+    "Visando sempre melhorar minhas habilidades técnicas e conhecimentos, buscando novos desafios e oportunidades para me capacitar e evoluir.",
 }
