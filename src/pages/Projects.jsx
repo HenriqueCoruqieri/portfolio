@@ -239,7 +239,7 @@ function Projects() {
               <img
                 src={selectedProject.imageUrl}
                 alt=""
-                className="bg-bg border-line h-64 w-full shrink-0 rounded-lg border object-cover object-top"
+                className="bg-bg border-line h-auto max-h-80 w-full shrink-0 rounded-lg border object-contain"
               />
             )}
 
